@@ -7,9 +7,8 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan("com.cleaningschedule")
-@Profile("test")
-@PropertySource(value = {"classpath:application-test.properties", "classpath:application.properties"})
-public class AppConfigurationTest {
+@Profile("componenttest")
+@PropertySource(value = {"classpath:application-componenttest.properties"})
+public class AppConfigurationComponentTest {
 
 }
-

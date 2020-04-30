@@ -100,8 +100,6 @@ public class ScheduleServiceUnitTest {
 		assertThat(fromService)
 			.isNotNull()
 			.hasSize(1)
-			.isEqualTo(fromService);
-			
+			.isEqualTo(fromService);	
 	}
-	
 }

@@ -3,7 +3,9 @@ package com.cleaningschedule.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
 
 import com.cleaningschedule.repository.ScheduleRepository;
 
@@ -11,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Component
 @Log4j2
+@Profile({"default"})
 public class DemoDataInitializer implements ApplicationListener<ApplicationReadyEvent>{
 	@Autowired
 	private ScheduleRepository scheduleRepository;

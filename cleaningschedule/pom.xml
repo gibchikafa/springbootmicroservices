@@ -32,7 +32,24 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-
+		<dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+	        <groupId>io.rest-assured</groupId>
+	        <artifactId>rest-assured</artifactId>
+	        <version>4.0.0</version>
+	        <scope>test</scope>
+	        <exclusions>
+		        <exclusion>
+		            <artifactId>rest-assured</artifactId>
+		            <groupId>io.rest-assured</groupId>
+		        </exclusion>
+    		</exclusions>
+    	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -45,6 +62,11 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>LATEST</version>
+        </dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -54,9 +76,7 @@
 		    <groupId>com.netflix.hystrix</groupId>
 		    <artifactId>hystrix-core</artifactId>
 		    <version>1.5.18</version>
-		</dependency>
-
-				
+		</dependency>		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

@@ -43,12 +43,7 @@ public class ScheduleService {
 	
 	private List<Schedule> putOccupantsInSchedule(List<Schedule> schedule, String buildingName){
 		List<Integer> rooms = schedule.stream().map(s -> s.getRoomNumber()).collect(Collectors.toList());
-		
-		//List<Occupant> roomOccupants = proxy.getRoomsOccupants(rooms, buildingName);
-		
 		return schedule.stream().map(s -> {
-			//List<Occupant> occupant = roomOccupants.stream().filter(o -> o.getRoomNumber() == s.getRoomNumber()).collect(Collectors.toList());
-			
 			Occupant occupant = proxy.getRoomOccupant(s.getRoomNumber(), buildingName);
 			
 			if(occupant != null) {
