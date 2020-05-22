@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Schedule {
-	private static final String SEQUENCE_NAME_KEY = "Schedule";
+	private static final String SEQUENCE_NAME_KEY = "SEQ_NAME";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME_KEY)

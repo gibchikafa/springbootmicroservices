@@ -34,6 +34,7 @@ public class RoomController {
 	@GetMapping("/room/occupant/{roomNumber}/{buildingName}")
 	public ResponseEntity<?> getRoomOccupant(@PathVariable int roomNumber, @PathVariable String buildingName) {
 		Room room =  this.roomService.getRoomOccupant(roomNumber, buildingName);
+		log.info(room);
 		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(room);
 	}
 	

@@ -11,6 +11,5 @@ import com.accomodation.domain.RoomId;
 @Repository
 public interface RoomRepository extends JpaRepository<Room, RoomId> {
 	Room findByRoomNumberAndBuildingName(int roomNumber, String buildingName);
-
 	List<Room> findByBuildingNameAndCorridor(String buildingName, String corridor);
 }

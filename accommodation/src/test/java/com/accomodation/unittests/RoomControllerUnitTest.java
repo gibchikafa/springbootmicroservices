@@ -44,7 +44,10 @@ public class RoomControllerUnitTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
-	
+
+
+
+
 	@Test
 	public void getRoomOccupant() throws Exception {
 		final int roomNumber = 1322;

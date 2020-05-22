@@ -45,13 +45,10 @@ public class ScheduleService {
 		List<Integer> rooms = schedule.stream().map(s -> s.getRoomNumber()).collect(Collectors.toList());
 		return schedule.stream().map(s -> {
 			Occupant occupant = proxy.getRoomOccupant(s.getRoomNumber(), buildingName);
-			
 			if(occupant != null) {
 				s.setOccupantName(occupant.getOccupantName());
 			}
-			
 			return s;
 		}).collect(Collectors.toList());
 	}
-
 }

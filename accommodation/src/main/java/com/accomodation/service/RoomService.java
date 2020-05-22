@@ -2,6 +2,7 @@ package com.accomodation.service;
 
 import java.util.List;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import com.accomodation.domain.Room;
@@ -9,6 +10,7 @@ import com.accomodation.domain.RoomId;
 import com.accomodation.repository.RoomRepository;
 
 @Service
+@Log4j2
 public class RoomService {
 	private final RoomRepository repository;
 	

@@ -29,9 +29,9 @@ import lombok.extern.log4j.Log4j2;
 //@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@ActiveProfiles("accomodationpersistenceintegrationtest")
 @Log4j2
-public class AccomodationIntegrationTest {
+public class AccommodationPersistenceIntegrationTest {
 	private final String buildingName = "Kungshamra71";
 	private final String corridor = "F3L";
 	
@@ -42,56 +42,24 @@ public class AccomodationIntegrationTest {
     private RoomRepository repository;
 
 	@Test
-	public void getRoomOccupant() throws Exception {
+	public  void persistenceIntegrationTest() throws Exception{
 		final int roomNumber = 1322;
 		final String occupant = "Gibson Chikafa";
-		
-		Room defaultRoom = new Room(roomNumber, buildingName, corridor, occupant);
-		
-		this.repository.save(defaultRoom);
-		
-		final String link = "/room/occupant/" + defaultRoom.getRoomNumber() + "/" + defaultRoom.getBuildingName();
-		
-		this.mockMvc.perform( MockMvcRequestBuilders
-				  .get(link)
-				  .accept(MediaType.APPLICATION_JSON_UTF8))
-				  .andDo(print())
-				  .andExpect(status().isOk())
-				  .andExpect(jsonPath("$.roomNumber", is(defaultRoom.getRoomNumber())))
-				  .andExpect(jsonPath("$.buildingName", is(defaultRoom.getBuildingName())))
-				  .andExpect(jsonPath("$.corridor", is(defaultRoom.getCorridor())))
-				  .andExpect(jsonPath("$.occupantName", is(defaultRoom.getOccupantName())));
-	}
-	
-	@Test
-	public void getRoomsOccupantTest() throws Exception{
-		List<Room> defaultRooms = new ArrayList<>();
-		
-		List<Integer> rooms = new ArrayList<>();
-		
 
-		List<RoomId> roomIds = new ArrayList<>();
-		roomIds.add(new RoomId(1324, buildingName));
-		roomIds.add(new RoomId(1325, buildingName));
-		
-		roomIds.stream().forEach(roomId 
-				-> {
-					defaultRooms.add(new Room(roomId.getRoomNumber(), roomId.getBuildingName(), corridor, "John Doe"));
-					rooms.add(roomId.getRoomNumber());
-				});
-		
-		this.repository.saveAll(defaultRooms);
-		
-		List<Room> queryRooms = this.repository.findAllById(roomIds);
-		
-		final String link = "/room/rooms-occupants/" + rooms + "/" + buildingName;
-		
-		this.mockMvc.perform(MockMvcRequestBuilders
+		Room defaultRoom = new Room(roomNumber, buildingName, corridor, occupant);
+
+		this.repository.save(defaultRoom);
+
+		final String link = "/room/occupant/" + defaultRoom.getRoomNumber() + "/" + defaultRoom.getBuildingName();
+
+		this.mockMvc.perform( MockMvcRequestBuilders
 				.get(link)
 				.accept(MediaType.APPLICATION_JSON_UTF8))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$", hasSize(queryRooms.size())))
-				.andExpect(jsonPath("$[*].roomNumber", is(rooms)));
+				.andExpect(jsonPath("$.roomNumber", is(defaultRoom.getRoomNumber())))
+				.andExpect(jsonPath("$.buildingName", is(defaultRoom.getBuildingName())))
+				.andExpect(jsonPath("$.corridor", is(defaultRoom.getCorridor())))
+				.andExpect(jsonPath("$.occupantName", is(defaultRoom.getOccupantName())));
 	}
 }
