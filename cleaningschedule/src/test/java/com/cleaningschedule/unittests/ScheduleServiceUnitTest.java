@@ -24,6 +24,12 @@ import com.cleaningschedule.service.ScheduleService;
 public class ScheduleServiceUnitTest {
 	private static final String buildingName = "Kungshamra71";
 	private static final String corridor = "F3L";
+
+	private static Schedule defaultSchedule;
+	private static final int roomNumber = 1322;
+	private static final String occupant = "Gibson Chikafa";
+	private static final int week = 1;
+	private static final long id = 1L;
 	
 	@Mock
 	private ScheduleRepository scheduleRepository;
@@ -33,13 +39,7 @@ public class ScheduleServiceUnitTest {
 	
 	@InjectMocks
 	private ScheduleService scheduleService;
-	
-	private static Schedule defaultSchedule;
-	private static final int roomNumber = 1322;
-	private static final String occupant = "Gibson Chikafa";
-	private static final int week = 1;
-	private static final long id = 1L;
-	
+
 	@BeforeAll
 	public static void setUp() {		
 		defaultSchedule = new Schedule(week, buildingName, corridor, roomNumber);

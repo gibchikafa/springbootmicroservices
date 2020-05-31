@@ -67,7 +67,16 @@ public class ScheduleControllerUnitTest {
 		
 		
 		final String link = "/schedule/week/"+week+"/"+buildingName+"/"+corridor;
-		
+
+
+		this.mockMvc.perform(MockMvcRequestBuilders
+				.get(link)
+				.accept(MediaType.APPLICATION_JSON_UTF8))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", hasSize(weekCleaners.size())))
+				.andExpect(jsonPath("$.[0].id", is((int)weekCleaners.get(0).getId())));
+
 		this.mockMvc.perform(MockMvcRequestBuilders
 				.get(link)
 				.accept(MediaType.APPLICATION_JSON_UTF8))

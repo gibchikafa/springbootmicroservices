@@ -61,9 +61,6 @@ public class CleaningScheduleComponentTest {
 		defaultSchedule.setId(1L);
 		defaultSchedule.setOccupantName(occupant);
 		repository.save(defaultSchedule);
-		
-
-        
 	}
 	
 	@Test
